@@ -3,6 +3,8 @@
 ## GitHub ISSUE 컨벤션
 [태그] 이슈제목
 
+## Git Branch 생성 규칙
+태그/이슈번호 브랜치명
 
 ## GitHub PR 컨벤션
 [태그] 발행 이슈 제목 혹은 PR 제목 #이슈번호
