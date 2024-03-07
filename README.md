@@ -42,7 +42,6 @@ level2-3-recsys-finalproject-recsys-02
 │  └─ notiAPI
 │     ├─ api.py
 │     ├─ auth.py
-│     ├─ data.json
 │     └─ parse_log.py
 ├─ model
 │  └─ README.md
