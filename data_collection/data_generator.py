@@ -34,7 +34,7 @@ def upload_blob(client, bucket_name, source_file_name, destination_blob_name):
     blob.upload_from_filename(source_file_name)
     print(f"File {source_file_name} uploaded to {destination_blob_name} in bucket {bucket_name}.")
 
-def get_products():
+def get_products(req_num = 1000):
     # CSV 파일 읽기 및 필터링
     product_df = pd.read_csv(os.path.join(DATA_DIR, "interaction_from_240113_replaced.csv"))
     product_df = product_df[~product_df["products"].str.contains("-")]
@@ -45,9 +45,9 @@ def get_products():
     client = authenticate_gcs(credentials_path)
 
     # 제품 ID를 1000개씩 배치로 처리 최대 조회수가 1000개
-    for i, num in enumerate(range(0, len(product_idlst), 1000)):
+    for i, num in enumerate(range(0, len(product_idlst), req_num)):
         source_file_name = os.path.join(DATA_DIR, f"product_info_{i}.json")
-        product_ids = product_idlst[num:num + 1000]
+        product_ids = product_idlst[num:num + req_num]
 
         print(i + 1, len(product_ids)) # 횟수 확인
         
@@ -101,6 +101,6 @@ def get_users():
 
 
 if __name__ == "__main__":
-    get_products()
+    get_products(req_num=1000) # req_num: 한번 요청시 조회수
     get_users()
 
