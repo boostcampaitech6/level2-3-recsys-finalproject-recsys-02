@@ -14,11 +14,11 @@ def tfidf_data_load():
     TF-IDF를 위한 데이터 로드 함수
     ----------
     """
-    gcs()
+    #gcs()
 
     ## DATA LOAD
-    interaction = pd.read_csv('./inter_240129.csv')
-    item = pd.read_csv('./item.csv')
+    interaction = pd.read_csv('../../data/inter_240129.csv')
+    item = pd.read_csv('../../data/item.csv')
 
     id_to_title = { item.loc[i,'id']:item.loc[i, 'title']for i in range(len(item))}
     interaction['title'] = interaction['products'].map(id_to_title)

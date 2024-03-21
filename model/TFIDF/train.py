@@ -8,7 +8,7 @@ from data_loader import tfidf_data_load
 
 
 ## BASIC ENVIRONMENT SETUP
-save_vector_path = '../asset/'
+save_vector_path = '../../data/'
 
 
 ## DATA LOAD
