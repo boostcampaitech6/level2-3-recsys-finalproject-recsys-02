@@ -5,9 +5,7 @@ import pickle
 import torch
 import numpy as np
 
-from args import parse_args
-
-def load_dics(): # item2idx, idx2item Pickle load
+def load_dics(): # item2idx Pickle load
     SERVICE_ACCOUNT_FILE = "../config/level3-416207-893f91c9529e.json"
 
     # Credentials 객체 생성
@@ -46,21 +44,14 @@ def seq_prepare(item_seq: list, candidates: list, max_len: int):
 
 
 
-def test(model, item_seq, candidates, args): ## 여기서 args.maxlen = 10만 쓰는데 굳이...?
+def test(model, item_seq, candidates): ## 여기서 args.maxlen = 10만 쓰는데 굳이...?
     
     #######모델 불러오기
     model.eval()
 
-    seq, candidates= seq_prepare(item_seq = item_seq, candidates=candidates, max_len=args.max_len)
+    seq, candidates= seq_prepare(item_seq = item_seq, candidates=candidates, max_len=10)
 
     with torch.no_grad():
         predictions = model.predict(np.array([seq]), np.array(candidates))
 
-    return predictions
-
-def main(args):
-    
-
-if __name__ == "__main__":
-    args = parse_args()
-    main(args)
+    return predictions.tolist()[0]
