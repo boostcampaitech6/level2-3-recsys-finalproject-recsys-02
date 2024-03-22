@@ -3,7 +3,6 @@ import numpy as np
 import pickle
 import argparse
 from sklearn.metrics.pairwise import cosine_similarity
-from datetime import datetime
 
 
 

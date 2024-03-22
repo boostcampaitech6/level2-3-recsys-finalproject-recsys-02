@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 import pickle
-import argparse
 from sklearn.feature_extraction.text import TfidfVectorizer
 from data_loader import tfidf_data_load
 
