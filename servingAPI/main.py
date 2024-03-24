@@ -2,15 +2,18 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from loguru import logger
-from config import config
 from api import router
+from utils.dependencies import load_user_index, load_user_vector, load_vectorizer
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # 데이터베이스 테이블 생성
-    logger.info("Creating database table")
-
-    # 모델 로드
+    # Load File for TF-IDF Serving
+    logger.info("Loading TF-IDF Dependency Files")
+    load_user_index()
+    load_user_vector()
+    load_vectorizer()
+     
+    # Load Sasrec model trained
     logger.info("Loading model")
     # model.py에 존재. 역할을 분리해야 할 수도 있음 => 새로운 파일을 만들고, 거기서 load_model 구현
     yield
@@ -20,7 +23,7 @@ app.include_router(router)
 
 @app.get("/")
 def root():
-    return "Hello World!"
+    return "Welcome to crwlnoti Recsys API"
 
 
 if __name__ == "__main__":
