@@ -5,7 +5,6 @@ FROM ubuntu:latest
 # install airflow
 ENV AIRFLOW_HOME="/root/airflow"
 ENV AIRFLOW__WORKER__NAME="worker_node"
-
 ENV AIRFLOW__MASTER__IP="10.0.1.6"
 ENV AIRFLOW__POSTGRESQL__HOST=${AIRFLOW__MASTER__IP}:5432
 ENV AIRFLOW__REDIS__HOST=${AIRFLOW__MASTER__IP}:6379
@@ -38,5 +37,15 @@ RUN mkdir -p /root/airflow/plugins
 
 RUN mkdir -p /etc/moreh
 RUN echo ${SDA_TOKEN} > /etc/moreh/token
- 
-CMD ["/bin/bash"]	
+
+RUN apt-get update
+RUN apt-get -y install lsb-release apt-transport-https ca-certificates curl gnupg2 software-properties-common
+RUN apt-get -y upgrade apt-transport-https
+RUN curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg > /tmp/dkey
+RUN apt-key add /tmp/dkey
+RUN add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable"
+RUN apt-get update
+RUN apt-get -y install docker-ce docker-ce-cli containerd.io
+
+
+CMD ["/bin/bash"]
