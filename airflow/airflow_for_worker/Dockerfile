@@ -5,6 +5,7 @@ FROM ubuntu:latest
 # install airflow
 ENV AIRFLOW_HOME="/root/airflow"
 ENV AIRFLOW__WORKER__NAME="worker_node"
+
 ENV AIRFLOW__MASTER__IP="10.0.1.6"
 ENV AIRFLOW__POSTGRESQL__HOST=${AIRFLOW__MASTER__IP}:5432
 ENV AIRFLOW__REDIS__HOST=${AIRFLOW__MASTER__IP}:6379
@@ -17,8 +18,8 @@ ENV AIRFLOW__LOGGING__BASE_LOG_FOLDER="${AIRFLOW_HOME}/log"
 ENV AIRFLOW__SCHEDULER__CHILD_PROCESS_LOG_DIRECTORY="${AIRFLOW_HOME}/log/scheduler"
 ENV AIRFLOW__LOGGING__DAG_PROCESSOR_MANAGER_LOG_LOCATION="${AIRFLOW_HOME}/log/dag_processor_manager/dag_processor_manager.log"
 ENV AIRFLOW__CORE__HOSTNAME_CALLABLE="airflow.utils.net.get_host_ip_address"
-ENV AIRFLOW__CORE__FERNET_KEY="jrw3__kmfVfZrFq50QluukhjQIq8Z7vz96lPXtOLoqo="
-ENV AIRFLOW__WEBSERVER__SECRET_KEY="hoE6QVCYLdSninTcIk+v0g=="
+ENV AIRFLOW__CORE__FERNET_KEY="3IAaJLLoinZznxT_D5uyeJwlUqmh6afqNcqTkVsoLwQ="
+ENV AIRFLOW__WEBSERVER__SECRET_KEY="b'c!~c=4\xd25\x19\x07IG\xb02+\x82'"
 ENV AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION="true"
 ENV AIRFLOW__CORE__LOAD_EXAMPLES="false"
 ENV AIRFLOW__API__AUTH_BACKENDS="airflow.api.auth.backend.basic_auth"
@@ -46,6 +47,6 @@ RUN apt-key add /tmp/dkey
 RUN add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable"
 RUN apt-get update
 RUN apt-get -y install docker-ce docker-ce-cli containerd.io
-
+RUN pip3 install apache-airflow-providers-docker
 
 CMD ["/bin/bash"]
