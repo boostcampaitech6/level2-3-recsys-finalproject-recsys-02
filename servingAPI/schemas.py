@@ -6,10 +6,11 @@ class PredictionRequest_SASRec(BaseModel):
     # [userseq],[item_seq]
 
 class PredictionRequest_TFIDF(BaseModel):
-    user : str
-    item : str
-    # [userseq],[item_seq]
+    user : str # hashed_ip
+    item : str # product_title
 
-class PredictionResponse_base(BaseModel):
-    result: list 
-    #[item_percentage_list]
+class PredictionResponse_SASRec(BaseModel):
+    sasrec_result: list
+    
+class PredictionResponse_TFIDF(BaseModel):
+    tfidf_result: float
