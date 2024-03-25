@@ -1,10 +1,16 @@
-FROM amd64/python:3.9-slim
+FROM python:3.9-slim
 
-WORKDIR /usr/app
+ENV TZ Asia/Seoul
 
-RUN pip install -U pip &&\
-    pip install "fastapi[all]"
+WORKDIR /app
 
-COPY main.py main.py
+COPY . .
 
-CMD ["uvicorn", "main.py", "--host", "0.0.0.0", "--reload"]
+EXPOSE 8000
+
+RUN apt-get update && apt-get upgrade -y && \
+    pip install -U pip &&\
+    pip install --upgrade pip &&\
+    pip install --no-cache-dir -r requirements.txt
+
+CMD ["python", "main.py"]
