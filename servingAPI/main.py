@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from loguru import logger
 from api import router
-from utils.dependencies import load_user_index, load_user_vector, load_vectorizer, download_model, load_model
+from utils.dependencies import load_user_index, load_user_vector, load_vectorizer, load_model, load_dict
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -13,11 +13,13 @@ async def lifespan(app: FastAPI):
     load_user_vector()
     load_vectorizer()
      
+    logger.info("Loading item2idx dict")
+    load_dict() 
     # Load Sasrec model trained
     logger.info("Loading model")
     # model.py에 존재. 역할을 분리해야 할 수도 있음 => 새로운 파일을 만들고, 거기서 load_model 구현
-    download_model()
-    # load_model()
+    load_model()
+    
     yield
 
 app = FastAPI(lifespan=lifespan)

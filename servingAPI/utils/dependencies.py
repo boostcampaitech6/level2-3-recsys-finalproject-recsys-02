@@ -10,51 +10,44 @@ STORAGE_PATH = config.storage_path
 SERVICE_ACCOUNT_FILE = config.account_json_path
 PROJECT_ID = config.project_id
 BUCKET_NAME = config.bucket_name
-ARTIFACT_URI = config.artifact_uri
-RUN_ID = config.run_id
+MODEL_PATH = config.download_model_path
 
 dtm_user, user_idx, vectorizer = None, None, None
 
-model = None
+item2idx, model = None, None
 
-# using for parameter logging
-client = mlflow.tracking.MlflowClient()
-run_info = client.get_run(RUN_ID)
-
-def download_model():
-    # Download model artifacts
-    mlflow.artifacts.download_artifacts(artifact_uri=ARTIFACT_URI, dst_path=STORAGE_PATH)
-
-
-def get_model_num_params():
-    num_user = run_info.data.params["num_user"]
-    num_item = run_info.data.params["num_item"]
-    
-    return int(num_user), int(num_item)
+def get_model_arch():
+    max_len = 10
+    hidden_units = 50
+    num_heads = 1
+    num_layers = 2
+    dropout_rate=0.5
+    num_workers = 1
+    #device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    device = 'cpu'
+    # training setting
+    num_user, num_item = 33075, 12069
+    global model
+    model = SASRec(num_user, num_item, hidden_units, num_heads, num_layers, max_len, dropout_rate, device)
+    return model
 
 
 def load_model():
     global model
-    # download_model_path="/home/user/servingAPI/storage/model/data/model.pth"
-    num_user, num_item = get_model_num_params()
-    model = SASRec(num_user, num_item, 50, 1,
-                   2, 10, 0.5, "cpu")
-    
-    download_model_path = "../storage/model/data/model.pth"
-    model.load_state_dict(torch.load(download_model_path))
+    download_model_path = MODEL_PATH
+    model = get_model_arch()
+    model.load_state_dict(torch.load(download_model_path, map_location=torch.device('cpu')))
+    model.eval()
+    print(model)
+    # model.load_state_dict(torch.load(download_model_path))
 
-
-# def load_model():
-#     import mlflow
-#     global model
-#     model = mlflow.pytorch.load_model(model_uri="s3://mlflow/9c5dfe82b5e744a7bc2087e63113c9c6/artifacts/model/MLmodel")
     
 def get_model():
     global model
     return model
 
 
-def load_dics(): 
+def load_dict(): 
     # LOAD ITEM2IDX PICKLE
     
     credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE)
@@ -69,6 +62,11 @@ def load_dics():
     with blob_item2idx.open(mode='rb') as f:
         item2idx = pickle.load(f)
 
+    return item2idx
+
+
+def get_item2idx():
+    global item2idx
     return item2idx
 
 

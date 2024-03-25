@@ -9,10 +9,8 @@ def predict(request: PredictionRequest_SASRec, model=Depends(get_model)) -> Pred
     #post func for tfidf
     data = request.dict()
     user_seq, item_seq = data['user_seq'], data['item_seq']
-    user_seq, item_seq = seq_prepare(user_seq, item_seq)
-    
     pred = test(model, user_seq, item_seq)
-    response = PredictionResponse_SASRec(result=pred)
+    response = PredictionResponse_SASRec(sasrec_result = pred)
 
     return response
     

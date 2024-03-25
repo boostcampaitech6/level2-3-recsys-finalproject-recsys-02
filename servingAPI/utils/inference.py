@@ -3,6 +3,7 @@ import numpy as np
 import torch
 import pickle
 from sklearn.metrics.pairwise import cosine_similarity
+from .dependencies import get_item2idx
 
 STORAGE_PATH = ''
 def tfidf_inference(user, item, dtm_user, user_idx, vectorizer):
@@ -23,9 +24,9 @@ def tfidf_inference(user, item, dtm_user, user_idx, vectorizer):
 
 
 def seq_prepare(item_seq: list, candidates: list, max_len: int):
-    global item2idx
-    item_seq = [(item2idx[key] if key in item2idx.keys() else 0) for key in item2idx] # dictionary에 없는 아이템은 0으로 indexing
-    candidates = [(item2idx[key] if key in item2idx.keys() else 0) for key in item2idx] # dictionary에 없는 아이템..? 받으면 안되지 않나?
+    item2idx = get_item2idx()
+    item_seq = [(item2idx[key] if key in item2idx.keys() else 0) for key in item_seq] # dictionary에 없는 아이템은 0으로 indexing
+    candidates = [(item2idx[key] if key in item2idx.keys() else 0) for key in candidates] # dictionary에 없는 아이템..? 받으면 안되지 않나?
 
     seq = np.zeros([max_len], dtype=np.int32)
     idx = max_len - 1
