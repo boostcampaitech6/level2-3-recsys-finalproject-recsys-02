@@ -1,0 +1,7 @@
+google-cloud-bigquery
+gspread oauth2client
+google-cloud-storage
+pandas
+scikit-learn
+pickle
+tqdm
