@@ -4,6 +4,7 @@ data
 notiAPI
 tmp
 
+*.pickle
 # Created by https://www.toptal.com/developers/gitignore/api/git,visualstudiocode,python,jupyternotebooks,macos,linux
 # Edit at https://www.toptal.com/developers/gitignore?templates=git,visualstudiocode,python,jupyternotebooks,macos,linux
 
