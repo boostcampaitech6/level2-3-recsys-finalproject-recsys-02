@@ -38,9 +38,19 @@ with DAG(
         dag=dag,
     ) 
 
-    #Task 1 Using docker - Fast_Api_start_task-TFIDF
-    do = DockerOperator(
+    #Task Using docker for SASREC training 
+    #.. 깃허브는 public으로 변할꺼니까.. 지금은 프라이빗이고.. 코드자체를 공개할수는 없는데 .. 도커이미지를 도커허브에 올릴수도 없고... - docker load를 이용하자?
+    sasrec_training_docker = DockerOperator(
+        image= '',
+        docker_url='unix://var/run/docker.sock',
+        command = '',
+        network_mode = 'bridge',
+        auto_remove = 'force',
+        device_requests=[docker.types.DeviceRequest(count=-1, capabilities=[['gpu']])],
         )
+    
+    #Fast_Api_start_task-TFIDF
+    
 
 
     #Task 5 Using slack noti - for training_end
