@@ -15,4 +15,4 @@ docker run -d -it --restart=always --name worker1 -p 8080:8080 \
 -v ~/airflow_worker/logs:/root/airflow/log \
 -v /var/run/docker.sock:/var/run/docker.sock -v /etc/localtime:/etc/localtime:ro -e TZ=Asia/Seoul \
 airflow_worker:1.0 \
-airflow celery worker -H worker4
+airflow celery worker -H worker2
