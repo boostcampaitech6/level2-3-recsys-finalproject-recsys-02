@@ -37,12 +37,16 @@ def get_model_arch():
 
 def load_model():
     global model
-    download_model_path = MODEL_PATH
+    credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE)
+    storage_client = storage.Client(credentials=credentials, project=PROJECT_ID)
+    bucket = storage_client.bucket(BUCKET_NAME)
+    model_path = '240320/SASRec.pt'
+    blob = bucket.get_blob(model_path)
+    blob.download_to_filename(STORAGE_PATH + '/SASRec.pt')
     model = get_model_arch()
-    model.load_state_dict(torch.load(download_model_path, map_location=torch.device('cpu')))
+    model.load_state_dict(torch.load(STORAGE_PATH + '/SASRec.pt', map_location=torch.device('cpu')))
     model.eval()
     print(model)
-    # model.load_state_dict(torch.load(download_model_path))
 
     
 def get_model():
@@ -83,33 +87,6 @@ def load_df_grouped():
 def get_df_grouped():
     global df_grouped
     return df_grouped
-
-# def load_user_vector():
-#     # LOAD USER VECTOR
-#     global dtm_user
-#     with open(STORAGE_PATH + '/240320_tfidf_user_vector.pickle','rb') as fw:
-#         dtm_user = pickle.load(fw)
-#     return dtm_user
-    
-# def load_user_index():
-#     # LOAD USER INDEX
-#     global user_idx
-#     with open(STORAGE_PATH + '/240320_tfidf_user_idx.pickle','rb') as fw:
-#         user_idx = pickle.load(fw)
-#     return user_idx
-    
-
-# def load_vectorizer():
-#     # LOAD VECTORIZER
-#     global vectorizer
-#     with open(STORAGE_PATH + '/240320_tfidf_vectorizer.pickle','rb') as fw:
-#         vectorizer = pickle.load(fw)
-#     return vectorizer
-
-# def get_tfidf_dependencies():
-#     global dtm_user, user_idx, vectorizer
-#     return dtm_user, user_idx, vectorizer
-    
     
 def load_similarity_matrix() -> pd.DataFrame:
     # LOAD SIMILARITY MATRIX

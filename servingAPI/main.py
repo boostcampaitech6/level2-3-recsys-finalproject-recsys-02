@@ -9,9 +9,6 @@ from utils.dependencies import load_df_grouped, load_model, load_dict, load_simi
 async def lifespan(app: FastAPI):
     # Load File for TF-IDF Serving
     logger.info("Loading TF-IDF Dependency Files")
-    # load_user_index()
-    # load_user_vector()
-    # load_vectorizer()
     load_df_grouped()
      
     logger.info("Loading item2idx dict")

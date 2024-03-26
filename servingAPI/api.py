@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, status, Depends
 from schemas import PredictionRequest_SASRec, PredictionRequest_TFIDF, PredictionRequest_IBCF, PredictionResponse_SASRec, PredictionResponse_TFIDF, PredictionResponse_IBCF
-from utils.inference import tfidf_inference, seq_prepare, test, ibcf_inference
+from utils.inference import tfidf_inference, seq_prepare, sasrec_inference, ibcf_inference
 from utils.dependencies import get_model, get_similarity_matrix
 router = APIRouter()
 
@@ -9,7 +9,7 @@ def predict(request: PredictionRequest_SASRec, model=Depends(get_model)) -> Pred
     #post func for tfidf
     data = request.dict()
     user_seq, item_seq = data['user_seq'], data['item_seq']
-    pred = test(model, user_seq, item_seq)
+    pred = sasrec_inference(model, user_seq, item_seq)
     response = PredictionResponse_SASRec(sasrec_result = pred)
 
     return response

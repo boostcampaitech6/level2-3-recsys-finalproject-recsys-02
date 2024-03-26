@@ -8,19 +8,6 @@ from .dependencies import get_item2idx, get_df_grouped
 
 STORAGE_PATH = ''
 def tfidf_inference(user, item):
-    # new_product = vectorizer.transform([item])
-    # dtm_new = np.array(new_product.todense())
-
-
-    # # CALCULATE COSINE SIMILARITY
-    # cosine_similarities = cosine_similarity(dtm_user, dtm_new)
-    # sim = pd.DataFrame(cosine_similarities)
-
-
-    # # SIMILAR USER
-    # sim.index = sim.index.map(user_idx)
-    # result = sim.loc[user, 0]
-    
     df_grouped = get_df_grouped()
     ## TF-IDF
     vectorizer = TfidfVectorizer()
@@ -58,7 +45,7 @@ def seq_prepare(item_seq: list, candidates: list, max_len: int):
     return seq, candidates
 
 
-def test(model, item_seq, candidates):
+def sasrec_inference(model, item_seq, candidates):
     model.eval()
 
     seq, candidates= seq_prepare(item_seq = item_seq, candidates=candidates, max_len=10)
