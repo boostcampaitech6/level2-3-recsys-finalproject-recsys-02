@@ -49,6 +49,7 @@ RUN apt-get update
 RUN apt-get -y install docker-ce docker-ce-cli containerd.io
 RUN pip3 install apache-airflow-providers-docker 
 RUN pip3 install apache-airflow-providers-slack[http]
+RUN pip3 install apache-airflow-providers-ssh
 RUN pip3 install boto3 requests numpy pandas scikit-learn slack-sdk datasets emoji
 RUN pip3 install gcloud google-cloud google-cloud-secret-manager google-cloud-storage
 COPY level3-416207-29fcc1c52e91.json /
