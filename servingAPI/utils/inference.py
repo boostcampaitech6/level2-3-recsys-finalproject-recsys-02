@@ -2,21 +2,41 @@ import pandas as pd
 import numpy as np
 import torch
 import pickle
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from .dependencies import get_item2idx
+from .dependencies import get_item2idx, get_df_grouped
 
 STORAGE_PATH = ''
-def tfidf_inference(user, item, dtm_user, user_idx, vectorizer):
-    new_product = vectorizer.transform([item])
-    dtm_new = np.array(new_product.todense())
+def tfidf_inference(user, item):
+    # new_product = vectorizer.transform([item])
+    # dtm_new = np.array(new_product.todense())
 
+
+    # # CALCULATE COSINE SIMILARITY
+    # cosine_similarities = cosine_similarity(dtm_user, dtm_new)
+    # sim = pd.DataFrame(cosine_similarities)
+
+
+    # # SIMILAR USER
+    # sim.index = sim.index.map(user_idx)
+    # result = sim.loc[user, 0]
+    
+    df_grouped = get_df_grouped()
+    ## TF-IDF
+    vectorizer = TfidfVectorizer()
+    tfidf_user = vectorizer.fit_transform(df_grouped['product_titles'])
+    dtm_user = np.array(tfidf_user.todense())
+
+    new_item = item
+    new_product = vectorizer.transform([new_item])
+    dtm_new = np.array(new_product.todense())
 
     # CALCULATE COSINE SIMILARITY
     cosine_similarities = cosine_similarity(dtm_user, dtm_new)
     sim = pd.DataFrame(cosine_similarities)
 
-
     # SIMILAR USER
+    user_idx = {i:df_grouped.loc[i,'hashed_ip'] for i in range(len(df_grouped))}
     sim.index = sim.index.map(user_idx)
     result = sim.loc[user, 0]
 
