@@ -5,6 +5,7 @@ import mlflow
 from google.oauth2 import service_account
 from google.cloud import storage
 import torch
+import pandas as pd
 
 STORAGE_PATH = config.storage_path
 SERVICE_ACCOUNT_FILE = config.account_json_path
@@ -15,6 +16,8 @@ MODEL_PATH = config.download_model_path
 dtm_user, user_idx, vectorizer = None, None, None
 
 item2idx, model = None, None
+
+similarity_matrix = None
 
 def get_model_arch():
     max_len = 10
@@ -96,3 +99,14 @@ def get_tfidf_dependencies():
     global dtm_user, user_idx, vectorizer
     return dtm_user, user_idx, vectorizer
     
+    
+def load_similarity_matrix() -> pd.DataFrame:
+    # LOAD SIMILARITY MATRIX
+    global similarity_matrix
+    with open(STORAGE_PATH + '/item_similarity.pkl', 'rb') as f:
+        similarity_matrix = pickle.load(f)
+    
+
+def get_similarity_matrix():
+    global similarity_matrix
+    return similarity_matrix

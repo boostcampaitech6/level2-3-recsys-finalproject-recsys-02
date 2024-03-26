@@ -47,3 +47,14 @@ def test(model, item_seq, candidates):
         predictions = model.predict(np.array([seq]), np.array(candidates))
 
     return predictions.tolist()[0]
+
+
+def ibcf_inference(item_similarity_df: pd.DataFrame, item: str, topn: int = 5) -> pd.DataFrame:
+    topn = topn + 1  # 입력한 아이템 제외
+    if item in item_similarity_df.index:
+        sim_item_df = item_similarity_df[item].sort_values(ascending=False).reset_index().rename(columns={'index':'item',item:'similarity'})
+        print('입력한 아이템 id:', item)
+        return sim_item_df[1:topn]
+    else:
+        print('아이템 id를 다시 확인해주세요')
+        return None
