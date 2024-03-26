@@ -32,8 +32,6 @@ def tfidf_data_load(args):
             list(set(i[1]['products'][:])),
             str(list(set(i[1]['title'][:]))),
             ]
-        if len(df_grouped)==900:
-            break
     df_grouped['product_titles'] = title_processing(df_grouped['product_titles'])
 
 
