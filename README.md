@@ -157,7 +157,7 @@ To be
 ![](https://img.shields.io/badge/notion-000000?style=flat-square&logo=notion&logoColor=white)
 
 
-## 베이스라인 디렉토리 구조
+## 프로젝트 디렉토리 구조
 ```
 level2-3-recsys-finalproject-recsys-02
 ├─ .github
