@@ -5,10 +5,8 @@
 - [발표영상](https://www.youtube.com/watch?v=nWuolij8pCE)
 - [렙업리포트]()
 
-## 프로젝트 개요
+## 1. 프로젝트 개요
 ### 프로젝트 소개
-
-### 주제 소개
 ![image](https://github.com/boostcampaitech6/level2-3-recsys-finalproject-recsys-02/assets/97018869/2d961787-866c-4a88-af8f-938da515e0e3)
 
 - 크롤노티는 쿠팡 전자기기 특가 알림 사이트입니다. (일 로그 건 수 : 평균 10만 건 이상)
@@ -37,17 +35,17 @@
 ![image](https://github.com/boostcampaitech6/level2-3-recsys-finalproject-recsys-02/assets/97018869/169ad036-5b7a-4296-a1b9-cb0cc20d7dd3)
 
 
-## 서비스 아키텍처
+## 2. 서비스 아키텍처
 ![서비스아키텍처](https://github.com/boostcampaitech6/level2-3-recsys-finalproject-recsys-02/assets/97018869/e9ff4ed4-3615-4c6c-9c2b-74214f61804a)
 
-## 추천 모델 아키텍쳐
+## 3. 추천 모델 아키텍쳐
 ### 키워드 알림 개인화
 ![image](https://github.com/boostcampaitech6/level2-3-recsys-finalproject-recsys-02/assets/97018869/63bc45c7-fa47-4192-a72c-c63a495c5401)
 
 ### 세션 기반 Top K 추천
 ![image](https://github.com/boostcampaitech6/level2-3-recsys-finalproject-recsys-02/assets/97018869/42b0d3e8-d9f4-46da-bb2a-a0750de08e75)
 
-## 팀소개
+## 4. 팀소개
 
 네이버 부스트캠프 AI Tech 6기 Level 2 Recsys 2조 **R_AI_SE** 입니다.
 
@@ -130,7 +128,7 @@ To be
 
 
 
-## 프로젝트 개발 환경 및 기술 스택
+## 5. 프로젝트 개발 환경 및 기술 스택
 ### ⚙️ 개발 환경
 - OS: Ubuntu20.04
 - GPU: Tesla V100-32GB * 6
@@ -145,9 +143,10 @@ To be
 
 ![](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=FastAPI&logoColor=white)
 ![](https://img.shields.io/badge/MLflow-0194E2?style=flat-square&logo=MLflow&logoColor=white)
-![](https://img.shields.io/badge/apacheairflow-017CEE?style=flat-square&logo=apacheairflow&logoColor=black)
+![](https://img.shields.io/badge/apacheairflow-017CEE?style=flat-square&logo=apacheairflow&logoColor=white)
 ![](https://img.shields.io/badge/postgresql-4169E1?style=flat-square&logo=postgresql&logoColor=white)
-![](https://img.shields.io/badge/minio-C72E49?style=flat-square&logo=minio&logoColor=black)
+![](https://img.shields.io/badge/minio-C72E49?style=flat-square&logo=minio&logoColor=white)
+![](https://img.shields.io/badge/celery-37814A?style=flat-square&logo=celery&logoColor=black)
 
 ![](https://img.shields.io/badge/googlecloudstorage-AECBFA?style=flat-square&logo=googlecloudstorage&logoColor=black)
 ![](https://img.shields.io/badge/googlebigquery-669DF6?style=flat-square&logo=googlebigquery&logoColor=black)
@@ -159,7 +158,7 @@ To be
 ![](https://img.shields.io/badge/notion-000000?style=flat-square&logo=notion&logoColor=white)
 
 
-## 프로젝트 디렉토리 구조
+## 6. 프로젝트 디렉토리 구조
 ```
 level2-3-recsys-finalproject-recsys-02
 ├─ .github
