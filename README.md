@@ -2,7 +2,7 @@
 # 크롤노티 웹사이트 로그를 통한 개인화/세션 기반 추천 시스템 개발
 
 - [발표자료](https://github.com/boostcampaitech6/level2-3-recsys-finalproject-recsys-02/blob/main/docs/Recsys02-level3-%ED%81%AC%EB%A1%A4%EB%85%B8%ED%8B%B0%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%20%EB%A1%9C%EA%B7%B8%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC%20%ED%99%9C%EC%9A%A9%ED%95%9C%EA%B0%9C%EC%9D%B8%ED%99%94%EC%B6%94%EC%B2%9C%EC%8B%9C%EC%8A%A4%ED%85%9C%EA%B0%9C%EB%B0%9C.pdf)
-- [발표영상]()
+- [발표영상](https://www.youtube.com/watch?v=nWuolij8pCE)
 - [렙업리포트]()
 
 ## 프로젝트 개요
