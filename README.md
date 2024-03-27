@@ -9,6 +9,8 @@
 ### 프로젝트 소개
 
 ### 주제 소개
+![image](https://github.com/boostcampaitech6/level2-3-recsys-finalproject-recsys-02/assets/97018869/2d961787-866c-4a88-af8f-938da515e0e3)
+
 - 크롤노티는 쿠팡 전자기기 특가 알림 사이트입니다. (일 로그 건 수 : 평균 10만 건 이상)
 - 크롤노티로부터 제공받은 웹사이트 로그를 통한 개인화/세션 기반 추천 시스템 개발을 주제로 선정했습니다.
 
