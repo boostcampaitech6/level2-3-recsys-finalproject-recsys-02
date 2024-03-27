@@ -3,19 +3,23 @@ from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from loguru import logger
 from api import router
-from utils.dependencies import load_user_index, load_user_vector, load_vectorizer
+from utils.dependencies import load_df_grouped, load_model, load_dict, load_similarity_matrix
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Load File for TF-IDF Serving
     logger.info("Loading TF-IDF Dependency Files")
-    load_user_index()
-    load_user_vector()
-    load_vectorizer()
+    load_df_grouped()
      
+    logger.info("Loading item2idx dict")
+    load_dict() 
     # Load Sasrec model trained
     logger.info("Loading model")
     # model.py에 존재. 역할을 분리해야 할 수도 있음 => 새로운 파일을 만들고, 거기서 load_model 구현
+    load_model()
+    
+    logger.info("Loading similarity matrix")
+    load_similarity_matrix()
     yield
 
 app = FastAPI(lifespan=lifespan)

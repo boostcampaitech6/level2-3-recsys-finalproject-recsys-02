@@ -10,3 +10,5 @@ fastapi
 numpy
 pandas
 pydantic_settings
+google-auth
+torch
