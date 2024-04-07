@@ -1,0 +1,10 @@
+argparse
+google-auth
+google-cloud-storage
+pandas
+numpy
+scipy
+torch
+gensim
+mlflow
+tqdm
