@@ -29,8 +29,7 @@ def preprocess(df):
 
 def load_data(): 
     # LOAD ITEM2IDX PICKLE
-    
-    SERVICE_ACCOUNT_FILE = "/home/user/TM2LGCN/storage/level3-416207-893f91c9529e_api.json"
+    SERVICE_ACCOUNT_FILE = "../config/level3-416207-893f91c9529e.json"
     credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE)
     project_id = "level3-416207"
     storage_client = storage.Client(credentials=credentials, project=project_id)
