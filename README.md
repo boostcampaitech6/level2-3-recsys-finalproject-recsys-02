@@ -36,7 +36,7 @@
 
 
 ## 2. 서비스 아키텍처
-![서비스아키텍처](https://github.com/boostcampaitech6/level2-3-recsys-finalproject-recsys-02/assets/97018869/e9ff4ed4-3615-4c6c-9c2b-74214f61804a)
+![아키텍처공유_고화질_라이트](https://github.com/boostcampaitech6/level2-3-recsys-finalproject-recsys-02/assets/83704225/d288bd0a-24aa-4d4c-8b0c-9d872a121a17)
 
 ## 3. 추천 모델 아키텍쳐
 ### 키워드 알림 개인화
