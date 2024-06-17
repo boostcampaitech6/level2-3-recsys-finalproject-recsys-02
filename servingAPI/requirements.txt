@@ -1,0 +1,14 @@
+google-cloud-bigquery
+gspread
+google-cloud-storage
+pandas
+scikit-learn
+loguru
+uvicorn
+mlflow
+fastapi
+numpy
+pandas
+pydantic_settings
+google-auth
+torch
